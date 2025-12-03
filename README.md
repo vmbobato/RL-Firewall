@@ -64,3 +64,8 @@ If the flow is benign (`label=0`)
 This reward structure penalizes failing to block attacks heavily while still discouraging excessive blocking of legitimate traffic.
 
 ---
+
+## Contributors
+
+Vinicius Bobato - PhD Computer Engineering
+Maria 
