@@ -10,8 +10,13 @@ RESULTS_PATH = Path("results/results.json")
 def _load_results(path: Path = RESULTS_PATH) -> Dict[str, Any]:
     if not path.exists():
         return {}
-    with path.open("r") as f:
-        return json.load(f)
+    if path.stat().st_size == 0:
+        return {}
+    try:
+        with path.open("r") as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        return {}
 
 
 def _save_results(data: Dict[str, Any], path: Path = RESULTS_PATH) -> None:
@@ -25,55 +30,80 @@ def update_agent_results(
     agent_type: str,
     episodes: int,
     reward_curve: List[float],
-    confusion_matrix: Dict[str, int],
-    summary_metrics: Dict[str, float],
-    per_episode_metrics: Optional[List[Dict[str, Any]]] = None,
+    first_confusion_matrix: Dict[str, int],
+    last_confusion_matrix: Dict[str, int],
+    first_metrics: Dict[str, float],
+    last_metrics: Dict[str, float],
+    avg_reward: float,
     hyperparameters: Optional[Dict[str, Any]] = None,
     results_path: Path = RESULTS_PATH,
 ) -> None:
     """
-    Updates results.json with metrics for a single agent.
+    General logger for all agents.
 
+    Parameters
+    ----------
     agent_name : str
         Key in the JSON (e.g., "Random", "Q_Learning", "SARSA").
     agent_type : str
         A label like "baseline_random", "QLearning", "SARSA".
     episodes : int
-        Number of episodes evaluated.
+        Number of episodes run (training or evaluation).
     reward_curve : list of float
         Total reward per episode.
-    confusion_matrix : dict
-        Dict with keys: "TP", "FP", "TN", "FN".
-    summary_metrics : dict
-        Should at least contain: "avg_reward", "precision", "recall", "accuracy", "f1".
-    per_episode_metrics : list of dict, optional
-        List with per-episode info.
+    first_confusion_matrix : dict
+        Confusion matrix for the FIRST episode.
+    last_confusion_matrix : dict
+        Confusion matrix for the LAST episode.
+    first_metrics : dict
+        Metrics for the first episode:
+        { "reward", "precision", "recall", "accuracy", "f1" }
+    last_metrics : dict
+        Metrics for the last episode (same keys).
+    avg_reward : float
+        Average reward across all episodes.
     hyperparameters : dict, optional
         RL hyperparameters (alpha, gamma, epsilon, etc.).
     """
     results = _load_results(results_path)
 
-    avg_reward = summary_metrics.get("avg_reward", 0.0)
-    precision = summary_metrics.get("precision", 0.0)
-    recall = summary_metrics.get("recall", 0.0)
-    accuracy = summary_metrics.get("accuracy", 0.0)
-    f1 = summary_metrics.get("f1", 0.0)
+    summary = {
+        "episodes": episodes,
+        "avg_reward": float(avg_reward),
+        "first": {
+            "reward": float(first_metrics.get("reward", 0.0)),
+            "precision": float(first_metrics.get("precision", 0.0)),
+            "recall": float(first_metrics.get("recall", 0.0)),
+            "accuracy": float(first_metrics.get("accuracy", 0.0)),
+            "f1": float(first_metrics.get("f1", 0.0)),
+            "confusion_matrix": {
+                "TP": int(first_confusion_matrix.get("TP", 0)),
+                "FP": int(first_confusion_matrix.get("FP", 0)),
+                "TN": int(first_confusion_matrix.get("TN", 0)),
+                "FN": int(first_confusion_matrix.get("FN", 0)),
+            },
+        },
+        "last": {
+            "reward": float(last_metrics.get("reward", 0.0)),
+            "precision": float(last_metrics.get("precision", 0.0)),
+            "recall": float(last_metrics.get("recall", 0.0)),
+            "accuracy": float(last_metrics.get("accuracy", 0.0)),
+            "f1": float(last_metrics.get("f1", 0.0)),
+            "confusion_matrix": {
+                "TP": int(last_confusion_matrix.get("TP", 0)),
+                "FP": int(last_confusion_matrix.get("FP", 0)),
+                "TN": int(last_confusion_matrix.get("TN", 0)),
+                "FN": int(last_confusion_matrix.get("FN", 0)),
+            },
+        },
+    }
 
     agent_entry = {
         "agent_type": agent_type,
         "timestamp": datetime.utcnow().isoformat(),
         "hyperparameters": hyperparameters,
-        "summary": {
-            "episodes": episodes,
-            "avg_reward": avg_reward,
-            "precision": precision,
-            "recall": recall,
-            "accuracy": accuracy,
-            "f1": f1,
-        },
-        "reward_curve": reward_curve,
-        "confusion_matrix": confusion_matrix,
-        "per_episode_metrics": per_episode_metrics or [],
+        "summary": summary,
+        "reward_curve": [float(r) for r in reward_curve],
     }
 
     results[agent_name] = agent_entry

@@ -1,1 +1,42 @@
-{"THis is a placeholder":[]}
+{
+  "Random": {
+    "agent_type": "baseline_random",
+    "timestamp": "2025-12-03T21:30:06.782812",
+    "hyperparameters": null,
+    "summary": {
+      "episodes": 3,
+      "avg_reward": -546607.1666666666,
+      "first": {
+        "reward": -545235.5,
+        "precision": 0.2787361854518822,
+        "recall": 0.5005964833416813,
+        "accuracy": 0.5005388812440434,
+        "f1": 0.3580867571078421,
+        "confusion_matrix": {
+          "TP": 28954,
+          "FP": 74922,
+          "TN": 75077,
+          "FN": 28885
+        }
+      },
+      "last": {
+        "reward": -544205.5,
+        "precision": 0.2789664062800604,
+        "recall": 0.5013572157194885,
+        "accuracy": 0.5006158642789071,
+        "f1": 0.35847132294730893,
+        "confusion_matrix": {
+          "TP": 28998,
+          "FP": 74950,
+          "TN": 75049,
+          "FN": 28841
+        }
+      }
+    },
+    "reward_curve": [
+      -545235.5,
+      -550380.5,
+      -544205.5
+    ]
+  }
+}
