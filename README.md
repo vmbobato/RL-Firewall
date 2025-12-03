@@ -1,4 +1,4 @@
-# RL Based Firewall
+# Reinforcement Learning Based Firewall
 
 ## Custom Gymnasium Environment for Sequential Network Security Decision-Making
 
