@@ -10,10 +10,10 @@ The goal is to simulate real-time packet/flow filtering decisions using an RL ag
 ## Overview
 
 Traditional firewalls and supervised ML classifiers treat each packet independently, ignoring how earlier decisions affect future network state. This environment models packet filtering as a sequential decision-making problem:  
-    - Blocking malicious traffic reduces attacker persistence  
-    - Allowing malicious traffic increases future threat level  
-    - Overblocking benign traffic increases interface load and affects normal traffic  
-    - Each decision influences future states, not just the current one  
+- Blocking malicious traffic reduces attacker persistence  
+- Allowing malicious traffic increases future threat level  
+- Overblocking benign traffic increases interface load and affects normal traffic  
+- Each decision influences future states, not just the current one  
 This aligns with modern reinforcement-learning-based adaptive firewall research
 
 ---
