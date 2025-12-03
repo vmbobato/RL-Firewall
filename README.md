@@ -37,7 +37,7 @@ Binned (Discrete) features:
 - `syn_ratio_bin`  
 
 Labels:  
-    - `label` -> `0` = benign, `1` = malicious  
+- `label` -> `0` = benign, `1` = malicious  
 
 All the preprocessing can be seen in `notebooks/`. The only dataset used in the environment is `data/preprocessed/Binerized_features.csv`.  
 
@@ -53,3 +53,14 @@ If the flow is malicious (`label=1`)
 |----------|--------------|
 | ALLOW (0) | -20 (false negative) |
 | DENY (1) | +5 (correct block) |
+
+If the flow is benign (`label=0`)
+
+| Action | Reward |
+|----------|--------------|
+| ALLOW (0) | +0.5 (correct allow) |
+| DENY (1) | -2 (false positive) |
+
+This reward structure penalizes failing to block attacks heavily while still discouraging excessive blocking of legitimate traffic.
+
+---
