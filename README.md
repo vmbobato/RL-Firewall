@@ -22,18 +22,18 @@ This aligns with modern reinforcement-learning-based adaptive firewall research
 ## Environment Input Data
 
 Raw columns:  
-    - `Src_IP`  
-    - `Flow_Byts/s`  (raw bytes-per-second for interface load)  
+- `Src_IP`  
+- `Flow_Byts/s`  (raw bytes-per-second for interface load)  
 Binned (Discrete) features:  
-    - `Flow_Duration_bin`  
-    - `Tot_Fwd_Pkts_bin`  
-    - `Tot_Bwd_Pkts_bin`  
-    - `Pkt_Len_Mean_bin`  
-    - `Flow_Bytes_s_bin`  
-    - `ACK_Flag_Cnt_bin`  
-    - `Init_Fwd_Win_Byts_bin`  
-    - `SYN_Flag_Cnt_bin`  
-    - `syn_ratio_bin`  
+- `Flow_Duration_bin`  
+- `Tot_Fwd_Pkts_bin`  
+- `Tot_Bwd_Pkts_bin`  
+- `Pkt_Len_Mean_bin`  
+- `Flow_Bytes_s_bin`  
+- `ACK_Flag_Cnt_bin`  
+- `Init_Fwd_Win_Byts_bin`  
+- `SYN_Flag_Cnt_bin`  
+- `syn_ratio_bin`  
 Labels:  
     - `label` -> `0` = benign, `1` = malicious  
 
