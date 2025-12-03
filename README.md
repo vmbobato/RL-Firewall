@@ -67,5 +67,5 @@ This reward structure penalizes failing to block attacks heavily while still dis
 
 ## Contributors
 
-Vinicius Bobato - PhD Computer Engineering  
-Maria 
+Vinicius Bobato  
+Maria Visinescu
