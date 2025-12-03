@@ -35,6 +35,7 @@ Binned (Discrete) features:
 - `Init_Fwd_Win_Byts_bin`  
 - `SYN_Flag_Cnt_bin`  
 - `syn_ratio_bin`  
+
 Labels:  
     - `label` -> `0` = benign, `1` = malicious  
 
