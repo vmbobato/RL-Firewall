@@ -28,28 +28,22 @@ def rule_based_policy(obs):
     syn_flags_bin = int(obs[SYN_FLAGS_IDX])
     syn_ratio_bin = int(obs[SYN_RATIO_IDX])
     
-    # 1. SYN ratio is extremely predictive
     if syn_ratio_bin in (0, 1, 2):
-        return 1  # DENY
+        return 1
 
-    # 2) Strange ACK flag patterns (bins 1–4 are ~97–100% malicious)
     if ack_flags_bin in (1, 2, 3, 4):
         return 1
 
-    # 3) Tot_Bwd_Pkts_bin 1–4 are ~90–99% malicious
     if tot_bwd_pkts_bin in (1, 2, 3, 4):
         return 1
 
-    # 4) Very short flows are ~95% malicious (Flow_Duration_bin == 0)
     if flow_duration_bin == 0:
         return 1
 
-    # 5) Flow_Bytes_s_bin in {1,2,4} are > 80% malicious
     if flow_bytes_bin in (1, 2, 4):
         return 1
 
-    # Default: allow
-    return 0  # ALLOW
+    return 0
 
 
 
@@ -116,12 +110,10 @@ def evaluate_rule_based_agent(data_path, max_steps=None, num_episodes=1):
             f"F1={metrics['f1']:.3f}"
         )
 
-        # Save first episode metrics
         if ep == 0:
             first_cm = cm
             first_metrics = metrics.copy()
 
-        # Update last episode metrics (for deterministic agent, same as first)
         last_cm = cm
         last_metrics = metrics.copy()
 
@@ -145,7 +137,6 @@ def evaluate_rule_based_agent(data_path, max_steps=None, num_episodes=1):
     print(f"  Accuracy : {last_metrics['accuracy']:.3f}")
     print(f"  F1       : {last_metrics['f1']:.3f}")
 
-    # Log to results.json
     update_agent_results(
         agent_name="RuleBased",
         agent_type="rule_based_threshold",
