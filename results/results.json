@@ -38,5 +38,43 @@
       -550380.5,
       -544205.5
     ]
+  },
+  "RuleBased": {
+    "agent_type": "rule_based_threshold",
+    "timestamp": "2025-12-07T20:16:25.236522",
+    "hyperparameters": null,
+    "summary": {
+      "episodes": 1,
+      "avg_reward": 195627.0,
+      "first": {
+        "reward": 195627.0,
+        "precision": 0.9344944065087728,
+        "recall": 0.8896592264734714,
+        "accuracy": 0.9519385290466568,
+        "f1": 0.911525822551932,
+        "confusion_matrix": {
+          "TP": 51457,
+          "FP": 3607,
+          "TN": 146392,
+          "FN": 6382
+        }
+      },
+      "last": {
+        "reward": 195627.0,
+        "precision": 0.9344944065087728,
+        "recall": 0.8896592264734714,
+        "accuracy": 0.9519385290466568,
+        "f1": 0.911525822551932,
+        "confusion_matrix": {
+          "TP": 51457,
+          "FP": 3607,
+          "TN": 146392,
+          "FN": 6382
+        }
+      }
+    },
+    "reward_curve": [
+      195627.0
+    ]
   }
 }
