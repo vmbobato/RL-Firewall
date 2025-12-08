@@ -68,26 +68,26 @@ This reward structure penalizes failing to block attacks heavily while still dis
 ## Run the Code
 
 First create and activate the Conda environment:
-- conda create -n rlfirewall
--  conda activate rlfirewall
+- `conda create -n rlfirewall`
+- `conda activate rlfirewall`
 
 Then install the dependencies:
-- pip install -r requirements.txt
+- `pip install -r requirements.txt`
 
 Run random agent baseline:
-- python src/baseline_scripts/random_agent.py
+- `python src/baseline_scripts/random_agent.py`
 
 Run rule based agent baseline:
-- python src/baseline_scripts/rule_based_agent.py
+- `python src/baseline_scripts/rule_based_agent.py`
 
 Run Q-Learning RL agent:
-- python src/agents/Q_Learning.py
+- `python src/agents/Q_Learning.py`
 
 Run SARSA RL agent:
-- python src/agents/SARSA.py.py
+- `python src/agents/SARSA.py`
 
 Run the Deep Q-Learning RL agent:
-- python src/agents/DQN.py
+- `python src/agents/DQN.py`
 
 ---
 
