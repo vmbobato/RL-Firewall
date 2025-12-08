@@ -7,7 +7,7 @@ from src.utils.results_logger import update_agent_results
 from src.utils.metrics import compute_confusion_metrics
 
 
-def evaluate_q_learning_agent(   # ★ CHANGED FOR Q-LEARNING
+def evaluate_q_learning_agent(
     data_path="data/preprocessed/Binerized_features.csv",
     max_steps=None,
     num_episodes=10,
@@ -180,7 +180,7 @@ def evaluate_q_learning_agent(   # ★ CHANGED FOR Q-LEARNING
 
     # Log the results
     update_agent_results(
-        agent_name="Q-Learning",
+        agent_name="QLearning",
         agent_type="tabular_q_learning",
         episodes=num_episodes,
         reward_curve=reward_curve,
@@ -202,5 +202,5 @@ if __name__ == "__main__":
     evaluate_q_learning_agent(
         data_path="data/preprocessed/Binerized_features.csv",
         max_steps=None,
-        num_episodes=500,
+        num_episodes=1000,
     )
