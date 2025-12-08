@@ -78,16 +78,18 @@ Run random agent baseline:
 - `python3 -m src.baseline_scripts.random_agent`
 
 Run rule based agent baseline:
-- `python3 -m src.baseline_scripts.rule_based_agent`
+- `python3 -m src.baseline_scripts.Rule_based`
 
 Run Q-Learning RL agent:
-- `python3 -m src.agents.Q_Learning --episodes 300`
+- `python3 -m src.agents.Q_Learning --episodes 1000`
 
 Run SARSA RL agent:
-- `python3 -m src.agents.SARSA --episodes 300`
+- `python3 -m src.agents.SARSA --episodes 1000`
 
 Run the Deep Q-Learning RL agent:
-- `python3 -m src.agents.DQN`
+- `python3 -m src.agents.DQN`  
+
+The results for each agant is logged into `results/results.json`. The plots are generated in `notebooks/visualization.ipynb`.
 
 ## Contributors
 
