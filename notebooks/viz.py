@@ -30,6 +30,69 @@ def plot_confusion_matrix(cm_array, agent_name):
     plt.tight_layout()
     plt.show()
 
+
+# DQN
+
+agent_name = "DQN"
+
+agent_res = results[agent_name]
+reward_curve = agent_res["reward_curve"]
+
+plt.figure()
+plt.plot(reward_curve)
+plt.xlabel("Episode")
+plt.ylabel("Total Reward")
+plt.title(f"{agent_name} – Reward per Episode")
+plt.show()
+
+
+agent_name = "DQN"
+cm = results[agent_name]["summary"]["first"]["confusion_matrix"]
+cm_array = np.array([
+    [cm["TP"], cm["FN"]],
+    [cm["FP"], cm["TN"]]
+])
+plot_confusion_matrix(cm_array, "DQN Agent")
+
+
+agent_name = "DQN"
+cm = results[agent_name]["summary"]["last"]["confusion_matrix"]
+cm_array = np.array([
+    [cm["TP"], cm["FN"]],
+    [cm["FP"], cm["TN"]]
+])
+plot_confusion_matrix(cm_array, "DQN Agent")
+
+
+agent_name = "DQN"
+
+first_metrics = results[agent_name]["summary"]["first"]
+last_metrics  = results[agent_name]["summary"]["last"]
+
+metric_names = ["precision", "recall", "accuracy", "f1"]
+
+first_values = [first_metrics[m] for m in metric_names]
+last_values  = [last_metrics[m]  for m in metric_names]
+
+x = np.arange(len(metric_names))
+width = 0.35
+
+plt.figure(figsize=(8, 5))
+
+plt.bar(x - width/2, first_values, width, label="First episode")
+plt.bar(x + width/2, last_values,  width, label="Last episode")
+
+plt.xticks(x, [m.capitalize() for m in metric_names])
+plt.ylabel("Score")
+plt.ylim(0, 1.05)
+plt.title(f"{agent_name} – Metrics: First vs Last Episode")
+plt.legend()
+plt.grid(axis="y", linestyle="--", alpha=0.5)
+
+plt.tight_layout()
+plt.show()
+
+
 # Q-Learning Agent Plots
 
 agent_name = "QLearning"
@@ -164,7 +227,6 @@ sarsa_episodes = range(1, len(sarsa_rewards) + 1)
 
 plt.figure(figsize=(10, 6))
 
-# 3. Plot both curves
 plt.plot(ql_episodes, ql_rewards, label="Q-Learning")
 plt.plot(sarsa_episodes, sarsa_rewards, label="SARSA")
 

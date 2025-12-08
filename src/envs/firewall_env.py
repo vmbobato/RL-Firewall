@@ -91,7 +91,12 @@ class FirewallEnv:
             self.iface_bytes_window.append(max(flow_bps, 0.0))
         self.idx += 1
         self.steps += 1
-        terminated = self.idx >= self.n
+        
+        terminated = False
+        if self.idx >= self.n:
+            terminated = True
+        if self.max_step is not None and self.steps >= self.max_step:
+            terminated = True
         
         if terminated:
             obs = self.build_terminal_state()

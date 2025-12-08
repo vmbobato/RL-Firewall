@@ -2176,5 +2176,61 @@
       285944.5,
       279464.5
     ]
+  },
+  "DQN": {
+    "agent_type": "deep_q_network",
+    "timestamp": "2025-12-08T12:35:23.135009",
+    "hyperparameters": {
+      "gamma": 0.99,
+      "lr": 0.001,
+      "epsilon_start": 1.0,
+      "epsilon_min": 0.05,
+      "epsilon_decay": 0.995,
+      "batch_size": 64,
+      "replay_capacity": 50000,
+      "target_update_freq": 500
+    },
+    "summary": {
+      "episodes": 10,
+      "avg_reward": -527505.25,
+      "first": {
+        "reward": -544638.0,
+        "precision": 0.278939920484407,
+        "recall": 0.5009768495305849,
+        "accuracy": 0.5007361502708817,
+        "f1": 0.35835219286470227,
+        "confusion_matrix": {
+          "TP": 28976,
+          "FP": 74903,
+          "TN": 75096,
+          "FN": 28863
+        }
+      },
+      "last": {
+        "reward": 293162.0,
+        "precision": 0.8876123398559359,
+        "recall": 0.9630699009318806,
+        "accuracy": 0.9557876807898413,
+        "f1": 0.9238028105626344,
+        "confusion_matrix": {
+          "TP": 55703,
+          "FP": 7053,
+          "TN": 142946,
+          "FN": 2136
+        }
+      }
+    },
+    "reward_curve": [
+      -544638.0,
+      -541993.0,
+      -537153.0,
+      -537070.5,
+      -529623.0,
+      -524155.5,
+      -527030.5,
+      -518838.0,
+      -508608.0,
+      -505943.0
+    ]
   }
 }
