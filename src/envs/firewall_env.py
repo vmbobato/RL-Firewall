@@ -30,7 +30,7 @@ class FirewallEnv:
     
     def __init__(self, df : pd.DataFrame, iface_window_size : int = 1000, max_steps : Optional[int] = None):
         super().__init__()
-        self.df = df.reset_index(drop=True)
+        self.df = df.sample(frac=1.0, random_state=42).reset_index(drop=True)
         self.n = len(self.df)
         self.iface_window_size = iface_window_size
         self.max_step = max_steps
@@ -69,10 +69,13 @@ class FirewallEnv:
         self.steps = 0
         self.src_strike_count.clear()
         self.iface_bytes_window.clear()
-        
-        if seed is not None:
-            self.df = self.df.sample(frac=1.0, random_state=seed).reset_index(drop=True)
-        
+
+        # Sample a continous window of rows if max_step is set
+        if self.max_step is not None and self.max_step < self.n:
+            self.start_idx = np.random.randint(0, self.n - self.max_step)
+        else:
+            self.start_idx = 0
+            
         obs = self.build_state(self.idx)
         info = {}
         return obs, info
@@ -91,7 +94,12 @@ class FirewallEnv:
             self.iface_bytes_window.append(max(flow_bps, 0.0))
         self.idx += 1
         self.steps += 1
-        terminated = self.idx >= self.n
+        
+        terminated = False
+        if self.idx >= self.n:
+            terminated = True
+        if self.max_step is not None and self.steps >= self.max_step:
+            terminated = True
         
         if terminated:
             obs = self.build_terminal_state()
