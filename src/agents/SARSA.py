@@ -280,7 +280,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--epsilon_min",
         type=float,
-        default=0.05,
+        default=0.01,
         help="Minimum epsilon",
     )
     parser.add_argument(
