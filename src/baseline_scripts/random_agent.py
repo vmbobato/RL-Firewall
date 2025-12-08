@@ -118,5 +118,5 @@ if __name__ == "__main__":
     evaluate_random_agent(
         data_path="data/preprocessed/Binerized_features.csv",
         max_steps=None,
-        num_episodes=3,
+        num_episodes=10,
     )

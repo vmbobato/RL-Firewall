@@ -5,7 +5,7 @@ from src.envs.firewall_env import FirewallEnv
 from src.utils.results_logger import update_agent_results
 from src.utils.metrics import compute_confusion_metrics
 
-# Flow_Byts/s,Flow_Duration_bin,Tot_Fwd_Pkts_bin,Tot_Bwd_Pkts_bin,Pkt_Len_Mean_bin,Flow_Bytes_s_bin,ACK_Flag_Cnt_bin,Init_Fwd_Win_Byts_bin,SYN_Flag_Cnt_bin,syn_ratio_bin,
+
 FLOW_DURATION_IDX = 0
 TOT_FWD_PKTS_IDX = 1
 TOT_BWD_PKTS_IDX = 2
