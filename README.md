@@ -81,10 +81,10 @@ Run rule based agent baseline:
 - `python3 -m src.baseline_scripts.rule_based_agent`
 
 Run Q-Learning RL agent:
-- `python3 -m src.agents.Q_Learning`
+- `python3 -m src.agents.Q_Learning --episodes 300`
 
 Run SARSA RL agent:
-- `python3 -m src.agents.SARSA`
+- `python3 -m src.agents.SARSA --episodes 300`
 
 Run the Deep Q-Learning RL agent:
 - `python3 -m src.agents.DQN`
