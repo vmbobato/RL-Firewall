@@ -152,3 +152,58 @@ plt.grid(axis="y", linestyle="--", alpha=0.5)
 
 plt.tight_layout()
 plt.show()
+
+
+# Combined Plots
+
+ql_rewards = results["QLearning"]["reward_curve"]
+sarsa_rewards = results["SARSA"]["reward_curve"]
+
+ql_episodes = range(1, len(ql_rewards) + 1)
+sarsa_episodes = range(1, len(sarsa_rewards) + 1)
+
+plt.figure(figsize=(10, 6))
+
+# 3. Plot both curves
+plt.plot(ql_episodes, ql_rewards, label="Q-Learning")
+plt.plot(sarsa_episodes, sarsa_rewards, label="SARSA")
+
+plt.xlabel("Episode")
+plt.ylabel("Total Reward")
+plt.title("Reward per Episode: Q-Learning vs SARSA")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+
+ql_first = results["QLearning"]["summary"]["first"]
+ql_last = results["QLearning"]["summary"]["last"]
+sa_first = results["SARSA"]["summary"]["first"]
+sa_last = results["SARSA"]["summary"]["last"]
+
+metrics = ["precision", "recall", "accuracy", "f1"]
+
+ql_first_vals = [ql_first[m] for m in metrics]
+ql_last_vals = [ql_last[m]  for m in metrics]
+sa_first_vals = [sa_first[m] for m in metrics]
+sa_last_vals = [sa_last[m]  for m in metrics]
+
+x = np.arange(len(metrics))
+width = 0.2
+
+plt.figure(figsize=(10, 6))
+
+plt.bar(x - 1.5*width, ql_first_vals, width, label="QL – First")
+plt.bar(x - 0.5*width, ql_last_vals, width, label="QL – Last")
+plt.bar(x + 0.5*width, sa_first_vals, width, label="SARSA – First")
+plt.bar(x + 1.5*width, sa_last_vals, width, label="SARSA – Last")
+
+plt.xticks(x, [m.capitalize() for m in metrics])
+plt.ylabel("Score")
+plt.ylim(0, 1.05)
+plt.title("QLearning vs SARSA – Metrics: First vs Last Episode")
+plt.legend()
+plt.grid(axis="y", linestyle="--", alpha=0.4)
+plt.tight_layout()
+plt.show()
