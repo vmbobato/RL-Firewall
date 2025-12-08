@@ -205,5 +205,5 @@ if __name__ == "__main__":
     evaluate_sarsa_agent(
         data_path="data/preprocessed/Binerized_features.csv",
         max_steps=None,
-        num_episodes=500,
+        num_episodes=1000,
     )
