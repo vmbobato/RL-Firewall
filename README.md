@@ -68,7 +68,7 @@ This reward structure penalizes failing to block attacks heavily while still dis
 ## Run the Code
 
 First create and activate the Conda environment:
-- `conda create -n rlfirewall`
+- `conda create -n rlfirewall python=3.9.16`
 - `conda activate rlfirewall`
 
 Then install the dependencies:

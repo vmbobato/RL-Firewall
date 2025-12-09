@@ -1,4 +1,6 @@
-numpy
-pandas
-gymnasium
-torch
+numpy==1.26.4
+pandas==2.0.3
+gymnasium==0.29.0
+torch==2.0.1
+matplotlib==3.7.2
+box2d-py==2.3.5
